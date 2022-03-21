@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
-function App() {
+// Pages:
+import Home from './pages/home' 
+import Register from './pages/register'
+import PieceDetails from './pages/piece-details'
+import Cart from './pages/cart'
+import PieceEdit from './pages/piece-edit'
+import PieceAdd from './pages/piece-add'
+import CheckOut from './pages/checkout'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Header />
+      <main className='py-3'>
+        <Container>
+          <Routes>
+            <Route path='/pieces/new' element={<PieceAdd />} />
+            <Route path='/pieces/:id/edit' element={<PieceEdit />} />
+            <Route path='/pieces/:id' element={<PieceDetails />} />
+            <Route path='/register' element={<Register />} />            
+            <Route path='/cart' element={<Cart />} /> 
+            <Route path='/register' element={<Register />} />
+            <Route path='/checkout' element={<CheckOut />} />
+            <Route path='/' element={<Home />} />
+            
+          </Routes>
+        </Container>
+      </main>
+      <Footer />
+    </Router>
+  )
 }
 
-export default App;
+export default App
